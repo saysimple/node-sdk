@@ -1,0 +1,40 @@
+{
+  "name": "@saysimple-intelligence/node-sdk",
+  "version": "0.1.1",
+  "description": "The SaySimple NodeJS SDK",
+  "main": "dist/index.js",
+  "repository": "https://gitlab.just-internet.nl/saysimple-intelligence/sdks/node-sdk.git",
+  "author": "Jason <jason@just-internet.nl>",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "@types/jest": "^26.0.10",
+    "@types/qs": "^6.9.4",
+    "jest": "^26.4.2",
+    "jest-extended": "^0.11.5",
+    "ts-jest": "^26.2.0",
+    "typescript": "^4.0.2"
+  },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "jest-extended"
+    ]
+  },
+  "types": "dist/index.d.ts",
+  "declaration": true,
+  "scripts": {
+    "prepublishOnly": "tsc",
+    "postinstall": "tsc",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@types/lodash": "^4.14.160",
+    "axios": "^0.20.0",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.20",
+    "qs": "^6.9.4"
+  },
+  "publishConfig": {
+    "@saysimple-intelligence:registry": "https://gitlab.just-internet.nl/api/v4/projects/117/packages/npm/"
+  }
+}
