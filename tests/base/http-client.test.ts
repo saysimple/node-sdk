@@ -1,8 +1,9 @@
 import "jest-extended";
 import { HttpClient } from "../../src/base/http-client";
 import { SaySimpleAuthorization } from "../../src/base/saysimple-authorization";
+import axios from "axios";
 
-const axios = require("axios").default;
+jest.mock("../../src/base/error/http-client-error");
 
 describe("HttpClient", () => {
     beforeEach(() => {
@@ -18,8 +19,8 @@ describe("HttpClient", () => {
         new HttpClient();
 
         expect(axios.create).toBeCalledWith({
-            baseURL: "https://apis.saysimple.io/",
-            headers: {
+            baseURL : "https://api.saysimple.io/",
+            headers : {
                 "content-type": "application/json"
             }
         });
@@ -28,17 +29,17 @@ describe("HttpClient", () => {
     it("should be possible to add default config", () => {
         jest.spyOn(axios, "create");
         new HttpClient({
-            baseUrl: "https://other.url.com",
-            headers: {
+            baseUrl : "https://other.url.com",
+            headers : {
                 "Authorization": "Bearer 123456789"
             }
         });
 
         expect(axios.create).toBeCalledWith({
-            baseURL: "https://other.url.com",
-            headers: {
-                "content-type" : "application/json",
-                "Authorization": "Bearer 123456789"
+            baseURL : "https://other.url.com",
+            headers : {
+                "content-type"  : "application/json",
+                "Authorization" : "Bearer 123456789"
             }
         });
     });
@@ -63,7 +64,10 @@ describe("HttpClient", () => {
     });
 
     it("should be possible to do a POST request", async () => {
-        const http   = new HttpClient();
+        const http   = new HttpClient({}, new SaySimpleAuthorization(
+            "//api.saysimple.io/v1/auth/authenticate",
+            "token"
+        ));
         const result = await http.post<unknown>(
             "https://jsonplaceholder.typicode.com/posts",
             { title: "Test", body: "Test body" }

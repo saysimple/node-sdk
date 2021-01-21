@@ -1,40 +1,65 @@
 {
-  "name": "@saysimple-intelligence/node-sdk",
-  "version": "0.1.1",
-  "description": "The SaySimple NodeJS SDK",
+  "name": "@saysimple/node-sdk",
+  "homepage": "https://saysimple.nl",
+  "bugs": "https://github.com/saysimple/node-sdk/issues",
+  "repository": "https://github.com/saysimple/node-sdk",
+  "version": "0.0.6",
+  "description": "The official SaySimple Node SDK. Want to use our awesome customer conversations platform? Please visit: https://saysimple.com",
   "main": "dist/index.js",
-  "repository": "https://gitlab.just-internet.nl/saysimple-intelligence/sdks/node-sdk.git",
   "author": "Jason <jason@just-internet.nl>",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "private": false,
-  "devDependencies": {
-    "@types/jest": "^26.0.10",
-    "@types/qs": "^6.9.4",
-    "jest": "^26.4.2",
-    "jest-extended": "^0.11.5",
-    "ts-jest": "^26.2.0",
-    "typescript": "^4.0.2"
-  },
+  "keywords": [
+    "api",
+    "saysimple",
+    "whatsapp",
+    "conversations",
+    "sdk",
+    "messaging",
+    "message analytics",
+    "intelligence"
+  ],
   "jest": {
     "setupFilesAfterEnv": [
       "jest-extended"
     ]
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint --fix && yarn test --collect-coverage",
+      "pre-push": "yarn test"
+    }
+  },
   "types": "dist/index.d.ts",
   "declaration": true,
   "scripts": {
     "prepublishOnly": "tsc",
-    "postinstall": "tsc",
-    "test": "jest"
+    "lint": "eslint --ext .ts .",
+    "lint-fix": "eslint --ext .ts . --fix",
+    "test": "jest",
+    "test-coverage": "jest --coverage",
+    "watch": "tsc --watch"
   },
   "dependencies": {
-    "@types/lodash": "^4.14.160",
-    "axios": "^0.20.0",
+    "@typescript-eslint/parser": "^4.13.0",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.20",
     "qs": "^6.9.4"
   },
-  "publishConfig": {
-    "@saysimple-intelligence:registry": "https://gitlab.just-internet.nl/api/v4/projects/117/packages/npm/"
+  "devDependencies": {
+    "@types/jest": "^26.0.10",
+    "@types/jsonwebtoken": "^8.5.0",
+    "@types/lodash": "^4.14.160",
+    "@types/qs": "^6.9.4",
+    "@typescript-eslint/eslint-plugin": "^4.13.0",
+    "axios": "^0.20.0",
+    "eslint": "^7.1.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.3",
+    "husky": "^4.3.0",
+    "jest": "^26.4.2",
+    "jest-extended": "^0.11.5",
+    "ts-jest": "^26.2.0",
+    "typescript": "^4.0.2"
   }
 }

@@ -1,11 +1,10 @@
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse, Method } from "axios";
 import * as qs from "qs";
 import { Response } from "./response";
-import { HttpClientError } from "./http-client-error";
+import { HttpClientError } from "./error/http-client-error";
 import { HttpClientInterface } from "../types/base/http-client-interface";
 import { AuthorizationInterface } from "../types/base/authorization-interface";
-
-const axios = require("axios").default;
+import axios from "axios";
 
 export class HttpClient implements HttpClientInterface {
     private client: AxiosInstance;
@@ -16,8 +15,8 @@ export class HttpClient implements HttpClientInterface {
         authorizer?: AuthorizationInterface
     ) {
         const axiosOptions: AxiosRequestConfig = {
-            baseURL: options.baseUrl ?? "https://apis.saysimple.io/",
-            headers: {
+            baseURL : options.baseUrl ?? "https://api.saysimple.io/",
+            headers : {
                 ...defaultHeaders,
                 ...options.headers ?? {}
             }
@@ -41,7 +40,7 @@ export class HttpClient implements HttpClientInterface {
     async request<T>(httpMethod: Method, url: string, data?: unknown): Promise<Response<T>> {
         const dataAsQueryString = (httpMethod.toLowerCase() === "get" ? this.dataAsQueryString(data) : "");
         const dataOrNot         = httpMethod.toLowerCase() === "post" ? data : undefined;
-        let headers: any        = {};
+        const headers: any        = {};
 
         if (this.authorizer && this.authorizer.needsAuthorizationHeader()) {
             headers.authorization = `${this.authorizer.getAuthorizationType()} ${await this.authorizer.getAccessToken()}`;
@@ -50,11 +49,11 @@ export class HttpClient implements HttpClientInterface {
         return new Promise((resolve, reject) => {
 
             this.client.request({
-                    method: httpMethod,
-                    url   : `${url}${dataAsQueryString}`,
-                    data  : dataOrNot,
-                    headers
-                })
+                method : httpMethod,
+                url    : `${url}${dataAsQueryString}`,
+                data   : dataOrNot,
+                headers
+            })
                 .then((response: AxiosResponse) => {
                     resolve(new Response<T>(response.status, response.data));
                 })
@@ -65,7 +64,7 @@ export class HttpClient implements HttpClientInterface {
         });
     }
 
-    private dataAsQueryString(data: unknown, prefix: string = "?") {
+    private dataAsQueryString(data: unknown, prefix = "?"): string {
         return prefix + qs.stringify(data, { arrayFormat: "repeat" });
     }
 }

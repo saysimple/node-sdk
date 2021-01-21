@@ -1,4 +1,4 @@
-import { HttpClientError } from "../../src/base/http-client-error";
+import { HttpClientError } from "../../src/base/error/http-client-error";
 
 describe("HttpClientError", () => {
     it("should be defined", () => {
@@ -35,5 +35,4 @@ describe("HttpClientError", () => {
         const result = new HttpClientError(1234, "This is an error", "https://more.info");
         expect(typeof result.stack).toEqual("string");
     });
-
 });

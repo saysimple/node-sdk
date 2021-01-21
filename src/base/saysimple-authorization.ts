@@ -1,38 +1,38 @@
 import { AuthorizationInterface } from "../types/base/authorization-interface";
 import axios from "axios";
+import * as jwt from "jsonwebtoken";
 
 export class SaySimpleAuthorization implements AuthorizationInterface {
-    private accessToken: string = '';
-    private refreshToken: string = '';
+    private accessToken: string = "";
     private accessTokenValidUntil: Date = new Date();
 
-    private readonly applicationToken: string = '';
-    private readonly applicationSecret: string = '';
+    private readonly apiKey: string = "";
+    private bearerToken = "";
 
-    private readonly baseUrl: string = '';
 
     constructor(
-        baseUrl: string,
-        applicationToken: string,
-        applicationSecret?: string
+        private readonly authenticationUrl: string,
+        apiToken: string,
+        private readonly privateKey: string = ""
     ) {
-        this.baseUrl = (baseUrl[baseUrl.length-1] === '/' ? baseUrl.substr(0, baseUrl.length - 1) : baseUrl);
+        this.authenticationUrl = (authenticationUrl[authenticationUrl.length-1] === "/" ? authenticationUrl.substr(0, authenticationUrl.length - 1) : authenticationUrl);
 
-        if (applicationSecret) {
-            this.applicationToken = applicationToken;
-            this.applicationSecret = applicationSecret;
+        if (privateKey) {
+            this.apiKey = apiToken;
+            this.privateKey = privateKey;
         } else {
-            this.accessToken = applicationToken;
-            this.accessTokenValidUntil = new Date(Date.now() + 604800000) // 60*60*24*7: a week from now
+            this.accessToken = apiToken;
+            this.accessTokenValidUntil = new Date(Date.now() + 300000); // 5*60: five minutes from now
         }
     }
 
     public async getAccessToken(): Promise<string> {
-        if (this.accessToken.length < 1 && this.refreshToken.length < 1) {
+        if (this.accessToken.length < 1 || ! this.isAccessTokenValid()) {
             // No token ever requested
+            this.generateJWT();
             await this.authenticate();
-        } else if (! this.isAccessTokenValid()) {
-            await this.refreshTokens();
+        } else if(this.accessToken.length < 1) {
+            throw new Error("Unable to authenticate");
         }
 
         return this.accessToken;
@@ -45,25 +45,30 @@ export class SaySimpleAuthorization implements AuthorizationInterface {
         );
     }
 
-    public async refreshTokens(): Promise<void> {
-        if (this.refreshToken.length < 1) {
-            await this.authenticate();
-        }
-    }
-
     public async authenticate(): Promise<void> {
-        if(this.applicationToken.length < 1 || this.applicationSecret.length < 1) {
-            return Promise.reject(new Error("No token and/or secret given."));
+        if(this.apiKey.length < 1 || this.privateKey.length < 1) {
+            return Promise.reject(new Error("No api key and/or private key given."));
         }
 
-        const result = await axios.post(`${this.baseUrl}/v1/auth/authenticate`, {
-            grant: "api_credentials",
-            apiKey: this.applicationToken,
-            apiSecret: this.applicationSecret
+        const result = await axios.post(this.authenticationUrl, null, {
+            headers: {
+                Authorization: `Bearer ${this.bearerToken}`
+            }
         });
 
         this.accessToken = result.data.accessToken;
         this.accessTokenValidUntil = new Date(result.data.expiresIn);
+    }
+
+    private generateJWT(): any {
+        this.bearerToken = jwt.sign({
+            key      : this.apiKey,
+            apiToken : true
+        }, this.privateKey, {
+            algorithm : "RS256",
+            expiresIn : 300,
+            notBefore : 0
+        });
     }
 
     getAuthorizationType(): "Bearer" | "Basic" {
