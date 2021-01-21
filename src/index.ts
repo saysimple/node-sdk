@@ -5,13 +5,13 @@ import { SaySimpleAuthorization } from "./base/saysimple-authorization";
 import { IntelligenceV1FactoryMethodConfig } from "./types/domains/intelligence-v1-factory-method-config";
 
 function IntelligenceV1FactoryMethod(
-    applicationToken: string = '',
-    applicationSecret: string = '',
+    apiToken: string  = "",
+    privateKey: string = "",
     config: Partial<IntelligenceV1FactoryMethodConfig> = {
         baseUrl: "https://intelligence.apis.saysimple.io/v1/",
     }
 ): IntelligenceV1 {
-    if (! _.endsWith("/", config.baseUrl)) {
+    if (! _.endsWith(config.baseUrl, "/")) {
         config.baseUrl += "/";
     }
 
@@ -19,19 +19,17 @@ function IntelligenceV1FactoryMethod(
         new HttpClient(
             { baseUrl: config.baseUrl },
             new SaySimpleAuthorization(
-                config.authorizationBaseUrl ?? 'https://apigateway.saysimple.io/',
-                applicationToken,
-                applicationSecret
+                config.authenticationUrl ?? "https://api.saysimple.io/v1/auth/authenticate",
+                apiToken,
+                privateKey
             )
         )
     );
 }
 
-const SaySimple = {
+export = {
     Intelligence: {
-        V1    : IntelligenceV1FactoryMethod,
-        Latest: IntelligenceV1FactoryMethod
+        V1     : IntelligenceV1FactoryMethod,
+        Latest : IntelligenceV1FactoryMethod
     }
 };
-
-export default SaySimple;

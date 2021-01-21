@@ -28,11 +28,11 @@ describe("SaySimple API", () => {
 
         const expectedHttpClientConfig = {
             baseUrl: "https://secret-url.com/"
-        }
+        };
 
         SaySimple.Intelligence.V1(
-            "applicationToken",
-            "applicationSecret",
+            "apiKey",
+            "privateKey",
             {
                 baseUrl: "https://secret-url.com"
             }
@@ -43,9 +43,25 @@ describe("SaySimple API", () => {
         );
 
         expect(SaySimpleAuthorization).toBeCalledWith(
-            "https://apigateway.saysimple.io/",
-            "applicationToken",
-            "applicationSecret"
-        )
+            "https://api.saysimple.io/v1/auth/authenticate",
+            "apiKey",
+            "privateKey"
+        );
+    });
+
+    it("should be able to use custom authentication url", () => {
+        SaySimple.Intelligence.V1(
+            "apiKey",
+            "privateKey",{
+                authenticationUrl : "www.saysimple.com/auth",
+                baseUrl           : "www.saysimple.com/"
+            }
+        );
+
+        expect(SaySimpleAuthorization).toBeCalledWith(
+            "www.saysimple.com/auth",
+            "apiKey",
+            "privateKey"
+        );
     });
 });

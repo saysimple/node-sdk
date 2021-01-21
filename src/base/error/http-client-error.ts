@@ -9,10 +9,10 @@ export class HttpClientError extends Error {
         this.code     = code;
         this.moreInfo = moreInfo;
 
-        this.toString = () => JSON.stringify({
-            code    : this.code,
-            message : this.message,
-            moreInfo: this.moreInfo
+        this.toString = (): string => JSON.stringify({
+            code     : this.code,
+            message  : this.message,
+            moreInfo : this.moreInfo
         });
     }
 }

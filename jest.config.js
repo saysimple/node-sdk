@@ -1,4 +1,32 @@
 module.exports = {
+
+  coverageThreshold: {
+    global: {
+      branches: 85,
+      functions: 85,
+      lines: 85,
+      statements: 85,
+    },
+    "./src/base/error/*": {
+      "branches": 50,
+      "functions": 85,
+      "lines": 85,
+      "statements": 85
+    },
+    "./src/base/*": {
+      "branches": 85,
+      "functions": 85,
+      "lines": 85,
+      "statements": 85
+    },
+    "./src/domains/**": {
+      "branches": 85,
+      "functions": 85,
+      "lines": 85,
+      "statements": 85
+    }
+  },
+
   // The root directory that Jest should scan for tests and modules within
   // rootDir: "./test",
   setupFilesAfterEnv: [

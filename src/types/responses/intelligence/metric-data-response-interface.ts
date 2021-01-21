@@ -24,4 +24,17 @@ export interface MetricDataResponseInterface {
      * Format is "YYYY-[WEEK NUMBER]" for weeks and "YYYY-[QUARTER]" for quarters.
      */
     data: { [date: string]: number }[]
+
+    /**
+     * Aggregated value can be a sum, average or median of the selected period.
+     * For example if yoy requested the sum of messages, the aggregated value will be the sum of the total messages returned.
+     */
+    aggregatedValue: number
+
+    /**
+     * Previous aggregated value can be a sum, average or median of the previous period.
+     * For example if you requested the sum of messages from the period 2019-2020, the previous aggregated value will be
+     * the sum of total messages from the period 2018-2019.
+     */
+    previousAggregatedValue: number
 }

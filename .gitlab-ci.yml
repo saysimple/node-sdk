@@ -1,0 +1,41 @@
+image: node:14-buster
+
+stages:
+  - test
+  - publish
+
+# Test stage for all environments
+# Used for testing and linting our source code
+Test:
+  stage: test
+  script:
+    - yarn
+    - yarn test
+  tags:
+    - mi-test
+  only:
+    - merge_requests
+
+# Publish stage for master
+# Used for pushing our source code to the public Git repo and publishing our compiled code to the NPM registry
+Publish:
+  stage: publish
+  script:
+    - yarn
+    - mkdir -p ~/.ssh
+    - echo //registry.npmjs.org/:_authToken=$NPM_PUBLISH_KEY >> .npmrc
+    - echo "unsafe-perm=true" >> .npmrc
+    - npm version --no-git-tag-version --allow-same-version $(npm view @saysimple/node-sdk@latest version)
+    - npm version --no-git-tag-version patch
+    - npm publish --access public
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo -e "$GITHUB_DEPLOY_KEY")
+    - ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
+    - git init
+    - git remote set-url origin git@github.com:saysimple/node-sdk.git
+    - git push origin HEAD:master
+  tags:
+    - mi-deploy
+  only:
+    refs:
+      - master

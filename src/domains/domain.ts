@@ -1,6 +1,5 @@
 import { DomainInterface } from "../types/domain-interface";
 import { HttpClientInterface } from "../types/base/http-client-interface";
-import { Response } from "../base/response";
 
 export abstract class Domain implements DomainInterface {
     readonly abstract VERSION: string;
@@ -11,9 +10,5 @@ export abstract class Domain implements DomainInterface {
         httpClient: HttpClientInterface
     ) {
         this.httpClient = httpClient;
-    }
-
-    protected isNotImplementedYet(): Promise<Response<string>> {
-        return Promise.resolve(new Response<string>(200, "\"This method is not implemented yet.\""));
     }
 }
