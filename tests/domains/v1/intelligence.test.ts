@@ -50,6 +50,28 @@ const expectedBody = {
     previousAggregatedValue : 1502
 };
 
+const expectedBodyTags = {
+    aggregatedBy        : "DAY",
+    firstDataOccurrence : "2020-05-21T00:00:00.000Z",
+    lastDataOccurrence  : "2020-06-20T00:00:00.000Z",
+    data                : {
+        "test"     : 5,
+        "develop"  : 8,
+        "support"  : 2,
+        "test1"    : 5,
+        "develop1" : 8,
+        "support1" : 2,
+        "test2"    : 5,
+        "develop2" : 8,
+        "support2" : 2,
+        "test3"    : 5,
+        "develop3" : 8,
+        "support3" : 2,
+    },
+    aggregatedValue         : 110,
+    previousAggregatedValue : 40
+};
+
 describe("Intelligence V1", () => {
     beforeEach(() => {
         jest.clearAllMocks();
@@ -334,6 +356,26 @@ describe("Intelligence V1", () => {
         expect(mockedClient.get).toBeCalledWith("/metrics/conversations/messages/average", options);
 
         expect(result).toEqual(expectedBody);
+    });
+
+    it("should be able to get tags used", async () => {
+        const mockedClient = new HttpClient();
+
+        jest.spyOn(mockedClient, "get").mockResolvedValue(new Response(200, expectedBodyTags));
+
+        const options: MetricMessageParametersInterface = {
+            between     : "2020-05-21T20:25:10+02:00",
+            and         : "2020-06-20T20:25:10+02:00",
+            conversation: ["8"],
+            identifier  : "*",
+        };
+
+        const client = new Intelligence(mockedClient);
+        const result = await client.getConversationsTagsUsed(options);
+
+        expect(mockedClient.get).toBeCalledWith("/metrics/conversations/tags", options);
+
+        expect(result).toEqual(expectedBodyTags);
     });
 
     it("should be able to get average response time of messages", async () => {
