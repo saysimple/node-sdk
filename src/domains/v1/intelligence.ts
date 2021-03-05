@@ -38,6 +38,10 @@ export class Intelligence extends Domain {
         return this.getData<MetricDataResponseInterface, MetricConversationParametersInterface>("/metrics/active-contacts/sum", opts);
     }
 
+    public getActiveContactsDistribution(opts?: MetricConversationParametersInterface): Promise<MetricDataResponseInterface> {
+        return this.getData<MetricDataResponseInterface, MetricConversationParametersInterface>("/metrics/active-contacts/distribution", opts);
+    }
+
     public getSentPaidTemplatesSummed(opts?: MetricParametersInterface): Promise<MetricDataResponseInterface> {
         return this.getData<MetricDataResponseInterface, MetricParametersInterface>("/metrics/messages/sent-paid-templates/sum", opts);
     }
