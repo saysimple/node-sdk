@@ -172,6 +172,26 @@ describe("Intelligence V1", () => {
         expect(result).toEqual(expectedBody);
     });
 
+    it("should be able to get active contacts distributions", async () => {
+        const mockedClient = new HttpClient();
+
+        jest.spyOn(mockedClient, "get").mockResolvedValue(new Response(200, expectedBody));
+
+        const options: MetricConversationParametersInterface = {
+            between    : "2020-05-21T20:25:10+02:00",
+            and        : "2020-06-20T20:25:10+02:00",
+            channel    : [ "WHATSAPP" ],
+            identifier : "*",
+        };
+
+        const client = new Intelligence(mockedClient);
+        const result = await client.getActiveContactsDistribution(options);
+
+        expect(mockedClient.get).toBeCalledWith("/metrics/active-contacts/distribution", options);
+
+        expect(result).toEqual(expectedBody);
+    });
+
     it("should be able to get agents", async () => {
         const mockedClient = new HttpClient();
         jest.spyOn(mockedClient, "get")
@@ -364,10 +384,10 @@ describe("Intelligence V1", () => {
         jest.spyOn(mockedClient, "get").mockResolvedValue(new Response(200, expectedBodyTags));
 
         const options: MetricMessageParametersInterface = {
-            between     : "2020-05-21T20:25:10+02:00",
-            and         : "2020-06-20T20:25:10+02:00",
-            conversation: ["8"],
-            identifier  : "*",
+            between      : "2020-05-21T20:25:10+02:00",
+            and          : "2020-06-20T20:25:10+02:00",
+            conversation : [ "8" ],
+            identifier   : "*",
         };
 
         const client = new Intelligence(mockedClient);
@@ -384,8 +404,8 @@ describe("Intelligence V1", () => {
         jest.spyOn(mockedClient, "get").mockResolvedValue(new Response(200, expectedBody));
 
         const options: MetricMessageParametersInterface = {
-            between    : "2020-05-21T20:25:10+02:00",
-            and        : "2020-06-20T20:25:10+02:00"
+            between : "2020-05-21T20:25:10+02:00",
+            and     : "2020-06-20T20:25:10+02:00"
         };
 
         const client = new Intelligence(mockedClient);

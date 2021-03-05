@@ -1,9 +1,14 @@
 # 🚧 Changelog 🚧
 
 ## Latest
-**19 January 2021**
+**5 march 2021**
+- Added active contacts distributions
+
+## V0.0.8
+**3 march 2021**
 - Added conversations tags used
 
+## V0.0.7
 **14 January 2021**
 - Added average messages response times
 
