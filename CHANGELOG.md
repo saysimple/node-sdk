@@ -1,6 +1,9 @@
 # 🚧 Changelog 🚧
 
 ## Latest
+**19 January 2021**
+- Added conversations tags used
+
 **14 January 2021**
 - Added average messages response times
 

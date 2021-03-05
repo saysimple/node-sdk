@@ -82,18 +82,23 @@ export class Intelligence extends Domain {
         return this.getData<MetricDataResponseInterface, MetricMessageParametersInterface>("/metrics/conversations/messages/average", opts);
     }
 
+    public getConversationsTagsUsed(opts?: MetricMessageParametersInterface): Promise<MetricDataResponseInterface> {
+        return this.getData<MetricDataResponseInterface, MetricMessageParametersInterface>("/metrics/conversations/tags", opts);
+    }
+
     public getMessagesResponseTimesAverage(opts?: MetricMessageParametersInterface): Promise<MetricDataResponseInterface> {
         return this.getData<MetricDataResponseInterface, MetricMessageParametersInterface>("/metrics/messages/response-times/average", opts);
     }
 }
 
 interface MetricParametersInterface {
-    between?    : Date | string;
-    and?        : Date | string;
-    agent?      : "*" | string[];
-    channel?    : "*" | string[];
-    provider?   : "*" | string[];
-    identifier? : "*" | string[];
+    between?      : Date | string;
+    and?          : Date | string;
+    agent?        : "*" | string[];
+    channel?      : "*" | string[];
+    provider?     : "*" | string[];
+    identifier?   : "*" | string[];
+    conversation? : "*" | string[];
 }
 
 export interface MetricMessageParametersInterface extends MetricParametersInterface {
