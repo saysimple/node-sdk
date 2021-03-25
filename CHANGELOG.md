@@ -1,11 +1,15 @@
 # 🚧 Changelog 🚧
 
-## Latest
-**5 march 2021**
+## latest
+**23 March 2021**
+- Added get tags
+
+## V0.0.9
+**5 March 2021**
 - Added active contacts distributions
 
 ## V0.0.8
-**3 march 2021**
+**3 March 2021**
 - Added conversations tags used
 
 ## V0.0.7
