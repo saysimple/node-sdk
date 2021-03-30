@@ -41,15 +41,23 @@ directly on the first parameter.*
 
 | Function | Parameters |
 |----------|------------|
-| addMessage | See [**Add A Message** in the API Docs](https://api.saysimple.io/docs/intelligence/#operation/postMessage) |
-| getMessagesSummed | See [**Total Messages Summed** in the API Docs](https://api.saysimple.io/docs/intelligence/#operation/getTotalMessagesSummed) |
-| getActiveContactsSummed | See [**Total Active Contacts** in the API Docs](https://api.saysimple.io/docs/intelligence/#operation/getTotalActiveContacts) |
-| getSendPaidTemplatesSummed | See [**Total Paid Templates Send** in the API Docs](https://api.saysimple.io/docs/intelligence/#operation/getTotalPaidTemplatesSend) |
-| getAgents | See [**List Agents** in the API Docs](https://api.saysimple.io/docs/intelligence/#operation/getAgents) |
-| getChannels | See [**List Channels** in the API Docs](https://api.saysimple.io/docs/intelligence/#operation/getChannels) |
-| getConversationsResolved | See [**Get Converasations Resolved** in the API Docs](https://api.saysimple.io/docs/intelligence/#operation/getConversationsResolved) |
-| getConversationsResolveTimesAverage | See [**Get Conversations Resolve Times Average** in the API Docs](https://api.saysimple.io/docs/intelligence/#operation/getConversationsResolveTimesAverage) |
-| getConversationsResolveTimesMedian | See [**Get Conversations Resolve Times Median** in the API Docs](https://api.saysimple.io/docs/intelligence/#operation/getConversationsResolveTimesMedian) |
+| addMessage | See [**Add A Message** in the API Docs](https://docs.saysimple.io/insights/index.html#operation/postMessage) |
+| getMessagesSummed | See [**Total Messages Summed** in the API Docs](https://docs.saysimple.io/insights/index.html#operation/getTotalMessagesSummed) |
+| getActiveContactsSummed | See [**Total Active Contacts** in the API Docs](https://docs.saysimple.io/insights/index.html#operation/getTotalActiveContacts) |
+| getActiveContactsDistribution| See [**Total Active Contacts Distribution** in the API Docs](https://docs.saysimple.io/insights/index.html#operation/getActiveContactsDistributions) |
+| getSendPaidTemplatesSummed | See [**Total Paid Templates Sent** in the API Docs](https://docs.saysimple.io/insights/index.html#operation/getTotalPaidTemplatesSent) |
+| getAgents | See [**List all Agents** in the API Docs](https://docs.saysimple.io/insights/index.html#operation/getAgents) |
+| getChannels | See [**List all Channels** in the API Docs](https://docs.saysimple.io/insights/index.html#operation/getChannels) |
+| getMessageDistribution | See [**Message Distribution** in the API Docs](https://docs.saysimple.io/insights/index.html#operation/getMessageDistribution) |
+| getConversationsResolved | See [**Total Resolved Conversations** in the API Docs](https://docs.saysimple.io/insights/index.html#operation/getResolvedCoversations) |
+| getConversationsResolveTimesAverage | See [**Get Conversations Resolve Times (Average)** in the API Docs](https://docs.saysimple.io/insights/index.html#operation/getConversationResolveTimesAverage) |
+| getConversationsResolveTimesMedian | See [**Get Conversations Resolve Times (Median)** in the API Docs](https://docs.saysimple.io/insights/index.html#operation/getConversationResolveTimesMedian) |
+| resolveConversation | See [**Resolve a Conversation** in the API Docs](https://docs.saysimple.io/insights/index.html#operation/postEventsConversationsResolve) |
+| getConversationsFirstReplyTimesAverage | See [**Get Conversations Reply Times (Average)** in the API Docs](https://docs.saysimple.io/insights/index.html#operation/getConversationsFirstReplyTimesAverage) |
+| getConversationsFirstReplyTimesMedian | See [**Get Conversations Reply Times (Median)** in the API Docs](https://docs.saysimple.io/insights/index.html#operation/getConversationsFirstReplyTimesMedian) |
+| getConversationsMessagesAverage | See [**Average Messages per Conversation** in the API Docs](https://docs.saysimple.io/insights/index.html#operation/getConversationsMessagesAverage) |
+| getConversationsTagsUsed | See [**Conversations Tags Used** in the API Docs](https://docs.saysimple.io/insights/index.html#operation/getConversationsTags) |
+| getMessagesResponseTimesAverage | See [**Response Times (Average)** in the API Docs](https://docs.saysimple.io/insights/index.html#operation/getMessagesResponseTimesAverage) |
 
 To get all messages summed you can run the following code
 ```javascript
@@ -70,7 +78,7 @@ That's it! 🚀
 ## Messaging V1 💌
 
 _Will be implemented as soon as possible.  
-For now please refer to the [API documentation](https://api.saysimple.io/docs/messaging)._
+For now please refer to the [API documentation](https://docs.saysimple.io/messaging/index.html)._
 
 ## Showcasing 🎭
 
@@ -99,4 +107,5 @@ Like the versions of the SDK and Node.js and how your (environment) set up is.
 ## License 🕵🏽‍♀️
 This software is distributed under the Apache License 2.0 license. See [LICENSE.txt](./LICENSE.txt).
 
-Copyright 2019 - 2020 Just Internet B.V. or its affiliates. All Rights Reserved.
+Copyright 2019 - 2021 Just Internet B.V. or its affiliates. All Rights Reserved.
+

@@ -3,6 +3,7 @@ import { HttpClientInterface } from "../../types/base/http-client-interface";
 import { MetricDataResponseInterface } from "../../types/responses/intelligence/metric-data-response-interface";
 import { Response } from "../../base/response";
 import { AgentList } from "../../types/responses/intelligence/list-agents-response";
+import { TagList } from "../../types/responses/intelligence/list-tags-response";
 import { ListChannelsResponseInterface } from "../../types/responses/intelligence/list-channels-response";
 
 export class Intelligence extends Domain {
@@ -54,6 +55,10 @@ export class Intelligence extends Domain {
         return this.getData<Response<ListChannelsResponseInterface[]>>("/channels");
     }
 
+    public getTags(): Promise<Response<TagList>> {
+        return this.getData<Response<TagList>>("/tags");
+    }
+
     public getMessageDistribution(opts?: MetricMessageParametersInterface): Promise<MetricDataResponseInterface> {
         return this.getData<MetricDataResponseInterface, MetricMessageParametersInterface>("/metrics/messages/distribution", opts);
     }
@@ -100,6 +105,7 @@ interface MetricParametersInterface {
     and?          : Date | string;
     agent?        : "*" | string[];
     channel?      : "*" | string[];
+    tag?          : "*" | string[];
     provider?     : "*" | string[];
     identifier?   : "*" | string[];
     conversation? : "*" | string[];
