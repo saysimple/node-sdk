@@ -48,6 +48,8 @@ directly on the first parameter.*
 | getSendPaidTemplatesSummed | See [**Total Paid Templates Sent** in the API Docs](https://docs.saysimple.io/insights/index.html#operation/getTotalPaidTemplatesSent) |
 | getAgents | See [**List all Agents** in the API Docs](https://docs.saysimple.io/insights/index.html#operation/getAgents) |
 | getChannels | See [**List all Channels** in the API Docs](https://docs.saysimple.io/insights/index.html#operation/getChannels) |
+| getTags| See [**List all Tags** in the API Docs](https://docs.saysimple.io/insights/index.html#operation/getTags) |
+| getTeams | See [**List all Teams** in the API Docs](https://docs.saysimple.io/insights/index.html#operation/getTeams) |
 | getMessageDistribution | See [**Message Distribution** in the API Docs](https://docs.saysimple.io/insights/index.html#operation/getMessageDistribution) |
 | getConversationsResolved | See [**Total Resolved Conversations** in the API Docs](https://docs.saysimple.io/insights/index.html#operation/getResolvedCoversations) |
 | getConversationsResolveTimesAverage | See [**Get Conversations Resolve Times (Average)** in the API Docs](https://docs.saysimple.io/insights/index.html#operation/getConversationResolveTimesAverage) |

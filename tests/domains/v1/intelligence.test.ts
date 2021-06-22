@@ -235,6 +235,19 @@ describe("Intelligence V1", () => {
         expect(result).toEqual([ "support", "finance" ]);
     });
 
+    it("should be able to get teams", async () => {
+        const mockedClient = new HttpClient();
+        jest.spyOn(mockedClient, "get")
+            .mockResolvedValue(new Response(200, [ "finance", "support" ]));
+
+        const client = new Intelligence(mockedClient);
+        const result = await client.getTeams();
+
+        expect(mockedClient.get).toBeCalledWith("/teams", undefined);
+
+        expect(result).toEqual([ "finance", "support" ]);
+    });
+
     it("should be able to get paid templates sent", async () => {
         const mockedClient = new HttpClient();
 

@@ -1,6 +1,11 @@
 # 🚧 Changelog 🚧
 
-## latest
+## Latest
+**18 June 2021**
+- Added get teams
+- Added option to add tags when resolving conversations
+
+## V0.0.10
 **23 March 2021**
 - Added get tags
 
