@@ -59,6 +59,10 @@ export class Intelligence extends Domain {
         return this.getData<Response<TagList>>("/tags");
     }
 
+    public getTeams(): Promise<Response<TagList>> {
+        return this.getData<Response<TagList>>("/teams");
+    }
+
     public getMessageDistribution(opts?: MetricMessageParametersInterface): Promise<MetricDataResponseInterface> {
         return this.getData<MetricDataResponseInterface, MetricMessageParametersInterface>("/metrics/messages/distribution", opts);
     }
@@ -150,6 +154,7 @@ export interface ResolveConversationInterface {
     tenantChannelIdentifier: string,
     provider: string,
     agent?: string,
+    tags?: string,
     time: Date | string,
     conversation: string
 }
