@@ -1,6 +1,10 @@
 # 🚧 Changelog 🚧
 
 ## Latest
+**29 June 2021**
+- Refactor resolve conversation interface
+
+## V0.0.11
 **18 June 2021**
 - Added get teams
 - Added option to add tags when resolving conversations

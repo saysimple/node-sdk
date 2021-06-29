@@ -154,7 +154,7 @@ export interface ResolveConversationInterface {
     tenantChannelIdentifier: string,
     provider: string,
     agent?: string,
-    tags?: string,
+    tags?: string[],
     time: Date | string,
     conversation: string
 }
