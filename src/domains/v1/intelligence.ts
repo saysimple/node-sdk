@@ -91,6 +91,14 @@ export class Intelligence extends Domain {
         return this.getData<MetricDataResponseInterface, MetricMessageParametersInterface>("/metrics/conversations/first-reply-times/median", opts);
     }
 
+    public getConversationsFirstReplyTimesBusinessHoursAverage(opts?: MetricMessageParametersInterface): Promise<MetricDataResponseInterface> {
+        return this.getData<MetricDataResponseInterface, MetricMessageParametersInterface>("/metrics/conversations/first-reply-times-business-hours/average", opts);
+    }
+
+    public getConversationsFirstReplyTimesBusinessHoursMedian(opts?: MetricMessageParametersInterface): Promise<MetricDataResponseInterface> {
+        return this.getData<MetricDataResponseInterface, MetricMessageParametersInterface>("/metrics/conversations/first-reply-times-business-hours/median", opts);
+    }
+
     public getConversationsMessagesAverage(opts?: MetricMessageParametersInterface): Promise<MetricDataResponseInterface> {
         return this.getData<MetricDataResponseInterface, MetricMessageParametersInterface>("/metrics/conversations/messages/average", opts);
     }
@@ -146,7 +154,17 @@ export interface AddMessageParametersInterface {
     actor?: string,
     agent?: string,
     tags?: string[],
-    conversation?: string
+    conversation?: string,
+    businessHours?: {
+        0: string[],
+        1: string[],
+        2: string[],
+        3: string[],
+        4: string[],
+        5: string[],
+        6: string[],
+    },
+    timeZone?: string
 }
 
 export interface ResolveConversationInterface {
