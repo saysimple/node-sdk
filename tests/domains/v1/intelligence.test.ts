@@ -385,6 +385,44 @@ describe("Intelligence V1", () => {
         expect(result).toEqual(expectedBody);
     });
 
+    it("should be able to get average first reply time during business hours", async () => {
+        const mockedClient = new HttpClient();
+
+        jest.spyOn(mockedClient, "get").mockResolvedValue(new Response(200, expectedBody));
+
+        const options: MetricMessageParametersInterface = {
+            between : "2020-05-21T20:25:10+02:00",
+            and     : "2020-06-20T20:25:10+02:00",
+            agent   : [ "teddy@gmail.com" ]
+        };
+
+        const client = new Intelligence(mockedClient);
+        const result = await client.getConversationsFirstReplyTimesBusinessHoursAverage(options);
+
+        expect(mockedClient.get).toBeCalledWith("/metrics/conversations/first-reply-times-business-hours/average", options);
+
+        expect(result).toEqual(expectedBody);
+    });
+
+    it("should be able to get median first reply time during business hours", async () => {
+        const mockedClient = new HttpClient();
+
+        jest.spyOn(mockedClient, "get").mockResolvedValue(new Response(200, expectedBody));
+
+        const options: MetricMessageParametersInterface = {
+            between : "2020-01-21T20:25:10+02:00",
+            and     : "2020-02-20T20:25:10+02:00",
+            channel : [ "FACEBOOK_MESSENGER" ],
+        };
+
+        const client = new Intelligence(mockedClient);
+        const result = await client.getConversationsFirstReplyTimesBusinessHoursMedian(options);
+
+        expect(mockedClient.get).toBeCalledWith("/metrics/conversations/first-reply-times-business-hours/median", options);
+
+        expect(result).toEqual(expectedBody);
+    });
+
     it("should be able to get average messages per conversation", async () => {
         const mockedClient = new HttpClient();
 

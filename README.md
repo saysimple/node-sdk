@@ -57,6 +57,8 @@ directly on the first parameter.*
 | resolveConversation | See [**Resolve a Conversation** in the API Docs](https://docs.saysimple.io/insights/index.html#operation/postEventsConversationsResolve) |
 | getConversationsFirstReplyTimesAverage | See [**Get Conversations Reply Times (Average)** in the API Docs](https://docs.saysimple.io/insights/index.html#operation/getConversationsFirstReplyTimesAverage) |
 | getConversationsFirstReplyTimesMedian | See [**Get Conversations Reply Times (Median)** in the API Docs](https://docs.saysimple.io/insights/index.html#operation/getConversationsFirstReplyTimesMedian) |
+| getConversationsFirstReplyTimesBusinessHoursAverage | See [**Get Conversations Reply Times During Business Hours (Average)** in the API Docs](https://docs.saysimple.io/insights/index.html#operation/getConversationsFirstReplyTimesBusinessHoursAverage) |
+| getConversationsFirstReplyTimesBusinessHoursMedian | See [**Get Conversations Reply Times During Business Hours (Median)** in the API Docs](https://docs.saysimple.io/insights/index.html#operation/getConversationsFirstReplyTimesBusinessHoursMedian) |
 | getConversationsMessagesAverage | See [**Average Messages per Conversation** in the API Docs](https://docs.saysimple.io/insights/index.html#operation/getConversationsMessagesAverage) |
 | getConversationsTagsUsed | See [**Conversations Tags Used** in the API Docs](https://docs.saysimple.io/insights/index.html#operation/getConversationsTags) |
 | getMessagesResponseTimesAverage | See [**Response Times (Average)** in the API Docs](https://docs.saysimple.io/insights/index.html#operation/getMessagesResponseTimesAverage) |

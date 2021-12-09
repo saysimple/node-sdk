@@ -1,6 +1,10 @@
 # 🚧 Changelog 🚧
 
 ## Latest
+**19 November 2021**
+- Added a get average and median first reply time during business hours
+
+## V0.0.12
 **29 June 2021**
 - Refactor resolve conversation interface
 
