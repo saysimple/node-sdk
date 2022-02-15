@@ -71,6 +71,10 @@ export class Intelligence extends Domain {
         return this.getData<MetricDataResponseInterface, MetricMessageParametersInterface>("/metrics/conversations/resolved", opts);
     }
 
+    public getConversationsUnique(opts?: MetricUniqueConversationParametersInterface): Promise<MetricDataResponseInterface> {
+        return this.getData<MetricDataResponseInterface, MetricUniqueConversationParametersInterface>("/metrics/conversations/unique", opts);
+    }
+
     public getConversationsResolveTimesAverage(opts?: MetricMessageParametersInterface): Promise<MetricDataResponseInterface> {
         return this.getData<MetricDataResponseInterface, MetricMessageParametersInterface>("/metrics/conversations/resolve-times/average", opts);
     }
@@ -131,6 +135,9 @@ export interface MetricConversationParametersInterface extends MetricParametersI
     unique?: boolean
 }
 
+export interface MetricUniqueConversationParametersInterface extends MetricParametersInterface {
+    initiatedBy?: "USER" | "BUSINESS" | "user" | "business"
+}
 interface mediaMessage {
     type: "IMAGE" | "VIDEO" | "AUDIO" | "DOCUMENT" | "OTHER"
     url: string,

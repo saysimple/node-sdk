@@ -1,6 +1,10 @@
 # 🚧 Changelog 🚧
 
 ## Latest
+**27 January 2022**
+- Added get unique conversations 
+
+## V0.0.13
 **19 November 2021**
 - Added a get average and median first reply time during business hours
 
