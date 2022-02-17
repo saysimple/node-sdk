@@ -2,7 +2,7 @@ import {
     AddMessageParametersInterface,
     Intelligence,
     MetricConversationParametersInterface,
-    MetricMessageParametersInterface, ResolveConversationInterface
+    MetricMessageParametersInterface, MetricUniqueConversationParametersInterface, ResolveConversationInterface
 } from "../../../src/domains/v1/intelligence";
 import { HttpClient } from "../../../src/base/http-client";
 import { Response } from "../../../src/base/response";
@@ -476,6 +476,45 @@ describe("Intelligence V1", () => {
         const result = await client.getMessagesResponseTimesAverage(options);
 
         expect(mockedClient.get).toBeCalledWith("/metrics/messages/response-times/average", options);
+
+        expect(result).toEqual(expectedBody);
+    });
+
+    it("should be able to get user initiated unique conversations", async () => {
+        const mockedClient = new HttpClient();
+
+        jest.spyOn(mockedClient, "get").mockResolvedValue(new Response(200, expectedBody));
+
+        const options: MetricUniqueConversationParametersInterface = {
+            between     : "2020-05-21T20:25:10+02:00",
+            and         : "2020-06-20T20:25:10+02:00",
+            channel     : [ "WHATSAPP" ],
+            initiatedBy : "USER",
+        };
+
+        const client = new Intelligence(mockedClient);
+        const result = await client.getConversationsUnique(options);
+
+        expect(mockedClient.get).toBeCalledWith("/metrics/conversations/unique", options);
+
+        expect(result).toEqual(expectedBody);
+    });
+    it("should be able to get business initiated unique conversations", async () => {
+        const mockedClient = new HttpClient();
+
+        jest.spyOn(mockedClient, "get").mockResolvedValue(new Response(200, expectedBody));
+
+        const options: MetricUniqueConversationParametersInterface = {
+            between     : "2020-05-21T20:25:10+02:00",
+            and         : "2020-06-20T20:25:10+02:00",
+            channel     : [ "WHATSAPP" ],
+            initiatedBy : "BUSINESS",
+        };
+
+        const client = new Intelligence(mockedClient);
+        const result = await client.getConversationsUnique(options);
+
+        expect(mockedClient.get).toBeCalledWith("/metrics/conversations/unique", options);
 
         expect(result).toEqual(expectedBody);
     });
