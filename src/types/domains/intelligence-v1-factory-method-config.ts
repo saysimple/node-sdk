@@ -1,4 +1,5 @@
 export interface IntelligenceV1FactoryMethodConfig {
     baseUrl: string,
-    authenticationUrl: string
+    authenticationUrl: string,
+    xClientIp: string
 }

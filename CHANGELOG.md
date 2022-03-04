@@ -1,6 +1,10 @@
 # 🚧 Changelog 🚧
 
 ## Latest
+**25 February 2022**
+- Added optional x-client-ip header to http client initiation
+
+## V0.0.14
 **27 January 2022**
 - Added get unique conversations 
 

@@ -75,5 +75,5 @@ const defaultHeaders: { [name: string]: string } = {
 
 interface HttpClientOptions {
     baseUrl?: string,
-    headers?: { [name: string]: string }
+    headers?: { [name: string]: string | undefined }
 }
