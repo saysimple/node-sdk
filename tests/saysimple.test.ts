@@ -27,14 +27,18 @@ describe("SaySimple API", () => {
     it("should be able to set the config for the httpclient", () => {
 
         const expectedHttpClientConfig = {
-            baseUrl: "https://secret-url.com/"
+            baseUrl : "https://secret-url.com/",
+            headers : {
+                "x-client-ip": "192.168.1337.45",
+            },
         };
 
         SaySimple.Intelligence.V1(
             "apiKey",
             "privateKey",
             {
-                baseUrl: "https://secret-url.com"
+                baseUrl   : "https://secret-url.com",
+                xClientIp : "192.168.1337.45"
             }
         );
         expect(HttpClient).toBeCalledWith(
@@ -54,7 +58,8 @@ describe("SaySimple API", () => {
             "apiKey",
             "privateKey",{
                 authenticationUrl : "www.saysimple.com/auth",
-                baseUrl           : "www.saysimple.com/"
+                baseUrl           : "www.saysimple.com/",
+                xClientIp         : "192.168.1337.45",
             }
         );
 
