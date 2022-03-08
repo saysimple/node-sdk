@@ -1,6 +1,10 @@
 # 🚧 Changelog 🚧
 
 ## Latest
+**8 March 2022**
+- Altered optional x-client-ip header
+
+## V0.0.15
 **25 February 2022**
 - Added optional x-client-ip header to http client initiation
 
