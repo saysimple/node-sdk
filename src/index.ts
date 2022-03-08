@@ -17,7 +17,9 @@ function IntelligenceV1FactoryMethod(
 
     return new IntelligenceV1(
         new HttpClient(
-            { baseUrl: config.baseUrl, headers: { [ "x-client-ip" ]: config.xClientIp } },
+            config.xClientIp
+                ? { baseUrl: config.baseUrl, headers: { [ "x-client-ip" ]: config.xClientIp } }
+                : { baseUrl: config.baseUrl },
             new SaySimpleAuthorization(
                 config.authenticationUrl ?? "https://api.saysimple.io/v1/auth/authenticate",
                 apiToken,
